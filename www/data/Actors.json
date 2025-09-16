@@ -1,4 +1,4 @@
 [
 null,
-{"id":1,"battlerName":"Actor2_4","characterIndex":3,"characterName":"Actor2","classId":1,"equips":[1,1,2,3,0],"faceIndex":5,"faceName":"","traits":[],"initialLevel":1,"maxLevel":99,"name":"女主人公","nickname":"","note":"","profile":""}
+{"id":1,"battlerName":"Actor2_4","characterIndex":3,"characterName":"Actor2","classId":1,"equips":[1,1,2,3,0],"faceIndex":5,"faceName":"","traits":[],"initialLevel":1,"maxLevel":99,"name":"女主人公","nickname":"","note":"<Set Sts Data>\nTreeType: 5\nInit Sp: 2\n</Set Sts Data>","profile":""}
 ]
