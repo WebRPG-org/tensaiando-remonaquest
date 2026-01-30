@@ -1,6 +1,6 @@
 [
 null,
-{"id":1,"expanded":false,"name":"ステージ１","order":1,"parentId":0,"scrollX":819,"scrollY":454},
+{"id":1,"expanded":true,"name":"ステージ１","order":1,"parentId":0,"scrollX":819,"scrollY":454},
 {"id":2,"expanded":true,"name":"ステージ３開始","order":24,"parentId":5,"scrollX":1013.4,"scrollY":757.1999999999999},
 {"id":3,"expanded":true,"name":"ステージ１準備","order":2,"parentId":1,"scrollX":811,"scrollY":931},
 {"id":4,"expanded":false,"name":"１－０","order":3,"parentId":1,"scrollX":811,"scrollY":454},
