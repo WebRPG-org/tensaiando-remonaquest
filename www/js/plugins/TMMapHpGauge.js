@@ -627,41 +627,52 @@ Imported.TMMapHpGauge = true;
 		}
 	};
 
-	Window_MapHpGauge.prototype.refresh = function() {
-		this.contents.clear();
-		var actor = $gameParty.leader();
-		if (actor) {
-			this.refreshFace();
-			for (var i = 0; i < gauges.length; i++) {
-				if (!$gameSystem.isVisibleMapHpGauges(i)) {
-					continue;
-				}
-				var gauge = gauges[i];
-				this._lineHeight = gauge.height;
-				this.contents.fontSize = gauge.fontSize;
-				if (gauge.type === 'HP') {
-					this.drawActorHp(actor, gauge.x, gauge.y, gauge.width);
-				} else if (gauge.type === 'MP') {
-					this.drawActorMp(actor, gauge.x, gauge.y, gauge.width);
-				} else if (gauge.type === 'TP') {
-					this.drawActorTp(actor, gauge.x, gauge.y, gauge.width);
-				} else if (gauge.type === 'LV') {
-					this.drawLvGauge(actor, gauge);
-				} else if (gauge.type === 'VN') {
-					this.drawVnGauge(this._gaugeParams[i], gauge);
-				}
-			}
-			for (var i = 0; i < stateIconMax; i++) {
-				if (!this._icons[i]) break;
-				var x = stateIconX + i * Math.floor(Window_Base._iconWidth * stateIconScale / 100);
-				this.drawIcon(this._icons[i], x, stateIconY);
-			}
-			if (goldWidth > 0) {
-				this.drawCurrencyValue(this._gold, TextManager.currencyUnit, goldX, goldY, goldWidth);
-			}
-			this._lineHeight = 36;
-		}
-	};
+Window_MapHpGauge.prototype.refresh = function() {
+    this.contents.clear();
+    var actor = $gameParty.leader();
+    if (actor) {
+        this.refreshFace();
+        for (var i = 0; i < gauges.length; i++) {
+            if (!$gameSystem.isVisibleMapHpGauges(i)) {
+                continue;
+            }
+            var gauge = gauges[i];
+            this._lineHeight = gauge.height;
+            this.contents.fontSize = gauge.fontSize;
+            if (gauge.type === 'HP') {
+                this.drawActorHp(actor, gauge.x, gauge.y, gauge.width);
+            } else if (gauge.type === 'MP') {
+                this.drawActorMp(actor, gauge.x, gauge.y, gauge.width);
+            } else if (gauge.type === 'TP') {
+                this.drawActorTp(actor, gauge.x, gauge.y, gauge.width);
+            } else if (gauge.type === 'LV') {
+                this.drawLvGauge(actor, gauge);
+            } else if (gauge.type === 'VN') {
+                this.drawVnGauge(this._gaugeParams[i], gauge);
+            }
+        }
+
+        // ステートアイコンを折り返して描画
+        var iconsPerRow = 4; // 4つごとに折り返す
+        var iconW = Math.floor(Window_Base._iconWidth * stateIconScale / 100);
+        var iconH = Math.floor(Window_Base._iconHeight * stateIconScale / 100);
+
+        for (var i = 0; i < stateIconMax; i++) {
+            if (!this._icons[i]) break;
+            var col = i % iconsPerRow;               // 列番号
+            var row = Math.floor(i / iconsPerRow);   // 行番号
+            var x = stateIconX + col * iconW;
+            var y = stateIconY + row * iconH;
+            this.drawIcon(this._icons[i], x, y);
+        }
+
+        if (goldWidth > 0) {
+            this.drawCurrencyValue(this._gold, TextManager.currencyUnit, goldX, goldY, goldWidth);
+        }
+        this._lineHeight = 36;
+    }
+};
+
 
 	Window_MapHpGauge.prototype.drawIcon = function(iconIndex, x, y) {
 		var bitmap = ImageManager.loadSystem('IconSet');
