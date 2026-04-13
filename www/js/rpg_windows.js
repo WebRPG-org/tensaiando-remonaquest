@@ -3850,7 +3850,7 @@ Window_ChoiceList.prototype.updatePlacement = function() {
     this.height = this.windowHeight();
     switch (positionType) {
     case 0:
-        this.x = 0;
+        this.x = 255;
         break;
     case 1:
         this.x = (Graphics.boxWidth - this.width) / 2;
